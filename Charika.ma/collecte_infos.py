@@ -13,13 +13,12 @@ chrome_options.add_argument('--no-sandbox')
 
 driver = webdriver.Chrome(options=chrome_options)
 
-csv_file = '/Users/othmaneirhboula/webscraping/liste_entreprises/text/entreprises_marocaines.csv'
+csv_file = 'Input/liste_des_entreprises.csv'
 
 
 with open(csv_file, 'r') as file:
     csv_reader = csv.reader(file)
-    companyname = [row[0] for row in csv_reader]
-    urls = ['https://www.charika.ma/' + name for name in companyname]
+    urls = [row[0] for row in csv_reader]
 
 data = []
 
@@ -136,15 +135,13 @@ try:
         driver.delete_all_cookies()
         for cookie in cookies:
             driver.add_cookie(cookie)
-        print(i)
-        i+=1
         info = extract_info(driver, url)
         data.append(info)
 
 finally:
     driver.quit()
 
-    output_csv_file = 'infos_entreprises_bis.csv'
+    output_csv_file = 'Output/infos_entreprises_bis.csv'
     with open(output_csv_file, 'w', newline='', encoding='utf-8') as file:
         writer = csv.writer(file)
         writer.writerow(["Nom de l'entreprise", 'Activite', 'Adresse','Ville','Coordonnees geographiques', 'RC','Tribunal', 'ICE', 'Forme Juridique', 'Capital'])

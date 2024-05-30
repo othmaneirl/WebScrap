@@ -14,8 +14,8 @@ def create_driver():
     chrome_options.add_argument('--no-sandbox')
     return webdriver.Chrome(options=chrome_options)
 
-csv_file = '/Users/othmaneirhboula/webscraping/liste_des_entreprises.csv'
-output_csv_file = 'infos_entreprises_final.csv'
+csv_file = 'Input/liste_des_entreprises.csv'
+output_csv_file = 'Output/infos_entreprises_final.csv'
 
 with open(csv_file, 'r') as file:
     csv_reader = csv.reader(file)
@@ -137,7 +137,7 @@ def scrape_part(urls, output_file, start_index=0):
 
         cookies = driver.get_cookies()
 
-        with open(output_file, 'a', newline='', encoding='utf-8') as file:
+        with open("Output/"+output_file, 'a', newline='', encoding='utf-8') as file:
             writer = csv.writer(file)
             if start_index == 0:
                 writer.writerow(["Nom de l'entreprise", 'Activite', 'Adresse', 'Ville', 'Coordonnees geographiques', 'Numero RC', 'Tribunal', 'ICE', 'Forme Juridique', 'Capital'])
@@ -152,9 +152,9 @@ def scrape_part(urls, output_file, start_index=0):
         driver.quit()
 
 def get_last_processed_index(output_file):
-    if not os.path.exists(output_file):
+    if not os.path.exists("Output/"+output_file):
         return 0
-    with open(output_file, 'r', newline='', encoding='utf-8') as file:
+    with open("Output/"+output_file, 'r', newline='', encoding='utf-8') as file:
         reader = csv.reader(file)
         return sum(1 for row in reader) - 1  # Subtract 1 for the header row
 
@@ -185,7 +185,7 @@ if __name__ == "__main__":
     with open(output_csv_file, 'w', newline='', encoding='utf-8') as outfile:
         writer = csv.writer(outfile)
         writer.writerow(["Nom de l'entreprise", 'Activite', 'Adresse', 'Ville', 'Coordonnees geographiques', 'RC', 'Tribunal', 'ICE', 'Forme Juridique', 'Capital'])
-        for part_file in [f'part1_{output_csv_file}', f'part2_{output_csv_file}', f'part3_{output_csv_file}', f'part4_{output_csv_file}']:
+        for part_file in [f'Output/part1_{output_csv_file}', f'Output/part2_{output_csv_file}', f'Output/part3_{output_csv_file}', f'Output/part4_{output_csv_file}']:
             with open(part_file, 'r', newline='', encoding='utf-8') as infile:
                 reader = csv.reader(infile)
                 next(reader)  # Skip header row
