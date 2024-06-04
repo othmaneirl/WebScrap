@@ -15,34 +15,34 @@ def create_driver():
     options = Options()
     options.headless = False
 
-    profile = webdriver.FirefoxProfile()
-    profile.set_preference('permissions.default.image', 2)
-    profile.set_preference('network.proxy.type', 1)
-    profile.set_preference('network.proxy.socks', '127.0.0.1')
-    profile.set_preference('network.proxy.socks_port', 9150)
-    profile.set_preference('network.proxy.socks_version', 5)
-    profile.set_preference('network.proxy.socks_remote_dns', True)
-    profile.update_preferences()
-
-    options.profile = profile
+    # profile = webdriver.FirefoxProfile()
+    # profile.set_preference('permissions.default.image', 2)
+    # profile.set_preference('network.proxy.type', 1)
+    # profile.set_preference('network.proxy.socks', '127.0.0.1')
+    # profile.set_preference('network.proxy.socks_port', 9150)
+    # profile.set_preference('network.proxy.socks_version', 5)
+    # profile.set_preference('network.proxy.socks_remote_dns', True)
+    # profile.update_preferences()
+    #
+    # options.profile = profile
     service = Service(geckodriver_path)
 
     driver = webdriver.Firefox(service=service, options=options)
     return driver
 
 
-csv_file = 'Input/liste_des_entreprises.csv'
-output_csv_file1 = 'Output/infos_entreprises_final.csv'
+csv_file = 'Airbnb/links.csv'
+output_csv_file1 = 'Airbnb/infos_annonces.csv'
 output_csv_file = output_csv_file1[7:]
 with open(csv_file, 'r') as file:
     csv_reader = csv.reader(file)
-    urls = [row[0] for row in csv_reader]
+    urls = ['https://airbnb.fr'+row[0] for row in csv_reader]
 
-fifth_index = len(urls) // 4
-urls_part1 = urls[:fifth_index]
-urls_part2 = urls[fifth_index:2 * fifth_index]
-urls_part3 = urls[2 * fifth_index:3 * fifth_index]
-urls_part4 = urls[3 * fifth_index:]
+fourth_index = len(urls) // 4
+urls_part1 = urls[:fourth_index]
+urls_part2 = urls[fourth_index:2 * fourth_index]
+urls_part3 = urls[2 * fourth_index:3 * fourth_index]
+urls_part4 = urls[3 * fourth_index:]
 
 
 def extract_info(driver, url):
@@ -52,7 +52,7 @@ def extract_info(driver, url):
     elems = []
     try:
         nom = wait.until(EC.presence_of_element_located(
-            (By.XPATH, '/html/body/div[3]/div/div/div[2]/div/div[1]/div[1]/div/div[2]/div[1]/h1/a'))).text
+            (By.XPATH, '/html/body/div[5]/div/div/div[1]/div/div[2]/div/div/div/div[1]/main/div/div[1]/div[1]/div[1]/div/div/div/div/div/section/div/div[1]/span[2]/h1'))).text
     except:
         nom = 'N/A'
     try:

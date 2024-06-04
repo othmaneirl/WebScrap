@@ -54,3 +54,4 @@ with open('links.csv', 'w', newline='') as file:
         writer.writerow([link])
 
 print("Extraction des liens terminée et sauvegardée dans links.csv")
+
