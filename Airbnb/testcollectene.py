@@ -1,75 +1,24 @@
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-import time
-from selenium.webdriver.firefox.options import Options as FirefoxOptions
-from selenium.webdriver.firefox.service import Service
+import requests
+from bs4 import BeautifulSoup
 
-# Path to your web driver
-def create_driver():
-    geckodriver_path = '/Users/othmaneirhboula/webscraping/geckodriver'
-    options = FirefoxOptions()
-    options.headless = False
+# URL du site web
+url = 'https://www.airbnb.fr/s/Maroc/homes?place_id=ChIJjcVRlmGICw0Rw_8sxIGT09k&refinement_paths%5B%5D=%2Fhomes&date_picker_type=monthly_stay&search_type=user_map_move&tab_id=home_tab&query=Maroc&flexible_trip_lengths%5B%5D=one_week&monthly_start_date=2024-07-01&monthly_length=1&monthly_end_date=2024-10-01&search_mode=regular_search&price_filter_input_type=0&channel=EXPLORE&source=structured_search_input_header&price_filter_num_nights=31&ne_lat=34.96590420464777&ne_lng=-6.584552050869888&sw_lat=32.21966057766953&sw_lng=-8.808944168726725&zoom=8.349822115491813&zoom_level=8.349822115491813&search_by_map=true'
 
-    profile = webdriver.FirefoxProfile()
-    options.profile = profile
-    service = Service(geckodriver_path)
+# Faire une requête HTTP pour obtenir le contenu de la page
+response = requests.get(url)
+html_content = response.text
 
-    driver = webdriver.Firefox(service=service, options=options)
-    return driver
-driver=create_driver()
+# Analyser le contenu HTML avec BeautifulSoup
+soup = BeautifulSoup(html_content, 'html.parser')
 
-# Open the Airbnb page
-url = 'https://airbnb.fr/rooms/53750106?adults=1&category_tag=Tag%3A8102&children=0&enable_m3_private_room=true&infants=0&pets=0&photo_id=1301218069&search_mode=regular_search&check_in=2024-06-09&check_out=2024-06-14&source_impression_id=p3_1717495627_P3Ma2GIgj6J-Qg3n&previous_page_section_name=1000&federated_search_id=c3f4e6d5-700c-4e8e-b1ff-818a53217a47'
-driver.get(url)
+# Trouver toutes les balises <a> qui contiennent les annonces
+# Généralement les liens des annonces Airbnb sont dans des balises <a> avec un href contenant 'rooms'
+links = soup.find_all('a', href=True)
+urls = [link['href'] for link in links if 'rooms' in link['href']]
 
-# Give the page some time to load
-time.sleep(5)
+# Ajouter le domaine de base s'il manque dans l'URL
+base_url = "https://www.airbnb.fr"
+full_urls = [url if url.startswith('http') else base_url + url for url in urls]
 
-# Extract information
-try:
-    tradOk = driver.find_element(By.XPATH, '/html/body/div[9]/div/div/section/div/div/div[2]/div/div[1]/button')
-    tradOk.click()
-    time.sleep(2)
-    # Extract title
-    title_element = driver.find_element(By.XPATH, '//h1[contains(@class, "_14i3z6h")]')
-    title = title_element.text
-    print(f"Title: {title}")
-
-    # Extract price
-    price_element = driver.find_element(By.XPATH, '//span[contains(@class, "_tyxjp1")]')
-    price = price_element.text
-    print(f"Price: {price}")
-
-    # Extract description
-    description_element = driver.find_element(By.XPATH, '//div[contains(@class, "_1d784r7")]')
-    description = description_element.text
-    print(f"Description: {description}")
-
-    # Extract key amenities
-    amenities_elements = driver.find_elements(By.XPATH,
-                                              '//div[contains(@class, "_kqh46o")]/div[contains(@class, "_vzrbjl")]')
-    amenities = [amenity.text for amenity in amenities_elements]
-    print("Amenities:")
-    for amenity in amenities:
-        print(f"- {amenity}")
-
-    # Extract location
-    location_element = driver.find_element(By.XPATH, '//div[contains(@class, "_9xiloll")]/span')
-    location = location_element.text
-    print(f"Location: {location}")
-
-    # Extract rating
-    rating_element = driver.find_element(By.XPATH, '//span[contains(@class, "_17p6nbba")]')
-    rating = rating_element.text
-    print(f"Rating: {rating}")
-
-    # Extract host name
-    host_element = driver.find_element(By.XPATH, '//a[contains(@class, "_1q2lt74")]/div')
-    host_name = host_element.text
-    print(f"Host Name: {host_name}")
-
-except Exception as e:
-    print(f"An error occurred: {e}")
-
-# Close the WebDriver
-driver.quit()
+# Afficher les URLs
+print(urls)
