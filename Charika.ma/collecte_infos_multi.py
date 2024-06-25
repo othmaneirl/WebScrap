@@ -1,20 +1,19 @@
 import csv
+import multiprocessing
+import os
 from unidecode import unidecode
+
+
+from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import multiprocessing
-import os
-from selenium import webdriver
-
-
 def create_driver():
     geckodriver_path = '/Users/othmaneirhboula/webscraping/geckodriver'
     options = Options()
     options.headless = False
-
     profile = webdriver.FirefoxProfile()
     profile.set_preference('permissions.default.image', 2)
     profile.set_preference('network.proxy.type', 1)
@@ -23,10 +22,8 @@ def create_driver():
     profile.set_preference('network.proxy.socks_version', 5)
     profile.set_preference('network.proxy.socks_remote_dns', True)
     profile.update_preferences()
-
     options.profile = profile
     service = Service(geckodriver_path)
-
     driver = webdriver.Firefox(service=service, options=options)
     return driver
 
@@ -51,33 +48,28 @@ def extract_info(driver, url):
 
     elems = []
     try:
-        nom = wait.until(EC.presence_of_element_located(
-            (By.XPATH, '/html/body/div[3]/div/div/div[2]/div/div[1]/div[1]/div/div[2]/div[1]/h1/a'))).text
+        nom = wait.until(EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div/div/div[2]/div/div[1]/div[1]/div/div[2]/div[1]/h1/a'))).text
     except:
         nom = 'N/A'
     try:
-        activite = driver.find_element(By.XPATH,
-                                       '/html/body/div[3]/div/div/div[2]/div/div[1]/div[1]/div/div[2]/div[1]/div[2]/span').text
+        activite = driver.find_element(By.XPATH,'/html/body/div[3]/div/div/div[2]/div/div[1]/div[1]/div/div[2]/div[1]/div[2]/span').text
         activite = unidecode(activite)
     except:
         activite = 'N/A'
     try:
-        adresse = driver.find_element(By.XPATH,
-                                      '/html/body/div[3]/div/div/div[2]/div[1]/div[1]/div[1]/div/div[2]/div[3]/div[1]').text
+        adresse = driver.find_element(By.XPATH,'/html/body/div[3]/div/div/div[2]/div[1]/div[1]/div[1]/div/div[2]/div[3]/div[1]').text
         adresse = unidecode(adresse)
     except:
         adresse = 'N/A'
     try:
-        elem1 = driver.find_element(By.XPATH,
-                                    '/html/body/div[3]/div/div/div[2]/div[1]/div[1]/div[1]/div/div[2]/div[4]/div/div[1]/table/tbody/tr[1]').text
+        elem1 = driver.find_element(By.XPATH,'/html/body/div[3]/div/div/div[2]/div[1]/div[1]/div[1]/div/div[2]/div[4]/div/div[1]/table/tbody/tr[1]').text
         elem1 = unidecode(elem1)
         elems.append(elem1)
     except:
         elem1 = 'N/A'
         elems.append(elem1)
     try:
-        elem2 = driver.find_element(By.XPATH,
-                                    '/html/body/div[3]/div/div/div[2]/div[1]/div[1]/div[1]/div/div[2]/div[4]/div/div[1]/table/tbody/tr[2]').text
+        elem2 = driver.find_element(By.XPATH,'/html/body/div[3]/div/div/div[2]/div[1]/div[1]/div[1]/div/div[2]/div[4]/div/div[1]/table/tbody/tr[2]').text
         elem2 = unidecode(elem2)
         elems.append(elem2)
     except:
@@ -113,7 +105,7 @@ def extract_info(driver, url):
         if elem.startswith('RC'):
             RC = elem
         elif elem.startswith('ICE'):
-            ICE = elem
+            ICE = str(elem)
         elif elem.startswith('Forme Juridique'):
             FJ = elem
         elif elem.startswith('Capital'):
