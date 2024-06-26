@@ -105,6 +105,6 @@ df1_filtered = df1[df1['Tribunal_RC'].isin(common_tribunal_rcs)]
 df2_filtered = df2[df2['Tribunal_RC'].isin(common_tribunal_rcs)]
 merged_df = pd.merge(df1_filtered, df2_filtered, how='right', on=['Tribunal_RC'])
 print(merged_df.head())
-output_path = 'Rapprochement de donnees/donnees_rapprochees.xlsx'
+output_path = 'test.xlsx'
 merged_df.to_excel(output_path, index=False)
 print(f"Rapprochement terminé et sauvegardé dans {output_path}")
