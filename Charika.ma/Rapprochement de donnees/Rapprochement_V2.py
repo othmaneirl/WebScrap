@@ -1,7 +1,7 @@
 import pandas as pd
 
 file2 = '/Users/othmaneirhboula/WebScrap/Charika.ma/Output/infos_entrprises.xlsx'
-file1 = '/Users/othmaneirhboula/WebScrap/Charika.ma/Rapprochement de donnees/contrib.xlsx'
+file1 = '/Users/othmaneirhboula/Desktop/simpl.xlsx'
 
 df1 = pd.read_excel(file1, dtype=str)
 df2 = pd.read_excel(file2, dtype=str)

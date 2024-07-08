@@ -10,26 +10,34 @@ from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+# def create_driver():
+#     geckodriver_path = '/Users/othmaneirhboula/webscraping/geckodriver'
+#     options = Options()
+#     options.headless = False
+#     profile = webdriver.FirefoxProfile()
+#     profile.set_preference('permissions.default.image', 2)
+#     profile.set_preference('network.proxy.type', 1)
+#     profile.set_preference('network.proxy.socks', '127.0.0.1')
+#     profile.set_preference('network.proxy.socks_port', 9150)
+#     profile.set_preference('network.proxy.socks_version', 5)
+#     profile.set_preference('network.proxy.socks_remote_dns', True)
+#     profile.update_preferences()
+#     options.profile = profile
+#     service = Service(geckodriver_path)
+#     driver = webdriver.Firefox(service=service, options=options)
+#     return driver
+
 def create_driver():
-    geckodriver_path = '/Users/othmaneirhboula/webscraping/geckodriver'
-    options = Options()
-    options.headless = False
-    profile = webdriver.FirefoxProfile()
-    profile.set_preference('permissions.default.image', 2)
-    profile.set_preference('network.proxy.type', 1)
-    profile.set_preference('network.proxy.socks', '127.0.0.1')
-    profile.set_preference('network.proxy.socks_port', 9150)
-    profile.set_preference('network.proxy.socks_version', 5)
-    profile.set_preference('network.proxy.socks_remote_dns', True)
-    profile.update_preferences()
-    options.profile = profile
-    service = Service(geckodriver_path)
-    driver = webdriver.Firefox(service=service, options=options)
+    chrome_options = Options()
+    # chrome_options.add_argument('--headless=new')
+    chrome_options.add_argument('--disable-gpu')
+    chrome_options.add_argument('--no-sandbox')
+
+    driver = webdriver.Chrome(options=chrome_options)
     return driver
 
-
-csv_file = 'Input/liste_des_entreprises.csv'
-output_csv_file1 = 'Output/infos_entreprises_final.csv'
+csv_file = '/Users/othmaneirhboula/WebScrap/filtered_url.csv'
+output_csv_file1 = 'Output/suit.csv'
 output_csv_file = output_csv_file1[7:]
 with open(csv_file, 'r') as file:
     csv_reader = csv.reader(file)
@@ -92,11 +100,9 @@ def extract_info(driver, url):
         elem4 = 'N/A'
         elems.append(elem4)
     try:
-        boutoncoordonnes = driver.find_element(By.XPATH,
-                                               '/html/body/div[3]/div/div/div[2]/div/div[3]/div[2]/div/div/div[1]/div[4]/img')
+        boutoncoordonnes = driver.find_element(By.XPATH,'/html/body/div[3]/div/div/div[2]/div/div[3]/div[2]/div/div/div[1]/div[4]/img')
         boutoncoordonnes.click()
-        coordonnees = wait.until(EC.presence_of_element_located(
-            (By.XPATH, '/html/body/div[3]/div/div/div[2]/div/div[3]/div[2]/div/div/div[1]/div[6]/div/div[1]/div'))).text
+        coordonnees = wait.until(EC.presence_of_element_located((By.XPATH, '/html/body/div[3]/div/div/div[2]/div/div[3]/div[2]/div/div/div[1]/div[6]/div/div[1]/div'))).text
     except:
         coordonnees = 'N/A'
 
@@ -113,14 +119,14 @@ def extract_info(driver, url):
 
     activite = activite[10:]
     adresse = adresse[7:]
-    RC = RC[2:]
     ICE = ICE[3:]
     FJ = FJ[16:]
     Capital = Capital[7:-3]
     try:
-        num, text = RC.split(" (")
-        RC = num
-        tribunal = text[:-1]
+        # num, text = RC.split(" (")
+        # RC = num
+        # tribunal = text[:-1]
+        tribunal = 'N/A'
     except:
         tribunal = 'N/A'
     try:
@@ -137,15 +143,11 @@ def scrape_part(urls, output_file, start_index=0):
     try:
         driver.get('https://charika.ma/')
         wait = WebDriverWait(driver, 10)
-        wait.until(EC.presence_of_element_located(
-            (By.XPATH, '/html/body/div[1]/div/div/div[2]/div/div[1]/ul/li[4]/a/b'))).click()
-        wait.until(EC.presence_of_element_located(
-            (By.XPATH, '/html/body/div[1]/div/div/div[2]/div/div[1]/ul/li[4]/ul/div/div/div/div[1]/a/button'))).click()
-        id = wait.until(EC.presence_of_element_located(
-            (By.XPATH, '/html/body/div[10]/div/div/div/div/div[1]/div[2]/div/div/form/div[1]/input')))
+        wait.until(EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/div/div/div[2]/div/div[1]/ul/li[4]/a/b'))).click()
+        wait.until(EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/div/div/div[2]/div/div[1]/ul/li[4]/ul/div/div/div/div[1]/a/button'))).click()
+        id = wait.until(EC.presence_of_element_located((By.XPATH, '/html/body/div[10]/div/div/div/div/div[1]/div[2]/div/div/form/div[1]/input')))
         id.send_keys('yoyotirpsn4@gmail.com')
-        mdp = driver.find_element(By.XPATH,
-                                  '/html/body/div[10]/div/div/div/div/div[1]/div[2]/div/div/form/div[2]/input')
+        mdp = driver.find_element(By.XPATH, '/html/body/div[10]/div/div/div/div/div[1]/div[2]/div/div/form/div[2]/input')
         mdp.send_keys('webscraping1')
         driver.find_element(By.XPATH, '/html/body/div[10]/div/div/div/div/div[1]/div[2]/div/div/form/button').click()
         cookies = driver.get_cookies()
@@ -153,9 +155,7 @@ def scrape_part(urls, output_file, start_index=0):
         with open("Output/" + output_file, 'a', newline='', encoding='utf-8') as file:
             writer = csv.writer(file)
             if start_index == 0:
-                writer.writerow(
-                    ["Nom de l'entreprise", 'Activite', 'Adresse', 'Ville', 'Coordonnees geographiques', 'Numero RC',
-                     'Tribunal', 'ICE', 'Forme Juridique', 'Capital'])
+                writer.writerow(["Nom de l'entreprise", 'Activite', 'Adresse', 'Ville', 'Coordonnees geographiques', 'Numero RC','Tribunal', 'ICE', 'Forme Juridique', 'Capital'])
             for i, url in enumerate(urls[start_index:], start=start_index):
                 driver.delete_all_cookies()
                 for cookie in cookies:

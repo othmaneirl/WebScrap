@@ -1,12 +1,15 @@
 import pandas as pd
 from rapidfuzz import process, fuzz
+from tqdm import tqdm
 
-# Charger les fichiers Excel
-population_df = pd.read_excel('/Users/othmaneirhboula/WebScrap/Charika.ma/population.xlsx')
-infos_entreprises_df = pd.read_excel('/Users/othmaneirhboula/WebScrap/Charika.ma/Output/infos_entrprises.xlsx')
+file1 = '/Users/othmaneirhboula/Desktop/df1.xlsx'
+file2 = '/Users/othmaneirhboula/Desktop/df2.xlsx'
+
+df1 = pd.read_excel(file1)
+df2 = pd.read_excel(file2)
 
 
-def fuzzy_merge(df_1, df_2, keys, threshold=60, limit=2):
+def fuzzy_merge(df_1, df_2, keys, threshold=80, limit=2):
     """
     Rapprocher deux dataframes sur la base de multiples paires de clés floues.
 
@@ -24,7 +27,8 @@ def fuzzy_merge(df_1, df_2, keys, threshold=60, limit=2):
 
     for key1, key2 in keys:
         s = df_2[key2].tolist()
-        df_1[f'matches_{key1}_{key2}'] = df_1[key1].apply(lambda x: get_matches(x, s))
+        tqdm.pandas(desc=f"Traitement de {key1} et {key2}")
+        df_1[f'matches_{key1}_{key2}'] = df_1[key1].progress_apply(lambda x: get_matches(x, s))
         df_1[f'best_match_{key1}_{key2}'] = df_1[f'matches_{key1}_{key2}'].apply(lambda x: ','.join(x) if x else None)
 
     return df_1
@@ -32,13 +36,15 @@ def fuzzy_merge(df_1, df_2, keys, threshold=60, limit=2):
 
 # Liste des paires de colonnes pour le rapprochement
 keys_to_match = [
-    ('RAISON_SOCIALE', 'Nom de l\'entreprise')
+    ('Nom de l\'entrepriseRC','NOM_PRENOM_RSNUM_REG_COM')
 ]
 
 # Rapprochement flou entre les colonnes spécifiées
-merged_df = fuzzy_merge(population_df, infos_entreprises_df, keys_to_match)
+print("Début du rapprochement...")
+merged_df = fuzzy_merge(df2, df1, keys_to_match)
 
 # Sauvegarder le résultat dans un nouveau fichier Excel
+print("Sauvegarde du résultat...")
 merged_df.to_excel('merged_output.xlsx', index=False)
 
 print("Rapprochement terminé et sauvegardé dans 'merged_output.xlsx'")
