@@ -10,31 +10,23 @@ from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-# def create_driver():
-#     geckodriver_path = '/Users/othmaneirhboula/webscraping/geckodriver'
-#     options = Options()
-#     options.headless = False
-#     profile = webdriver.FirefoxProfile()
-#     profile.set_preference('permissions.default.image', 2)
-#     profile.set_preference('network.proxy.type', 1)
-#     profile.set_preference('network.proxy.socks', '127.0.0.1')
-#     profile.set_preference('network.proxy.socks_port', 9150)
-#     profile.set_preference('network.proxy.socks_version', 5)
-#     profile.set_preference('network.proxy.socks_remote_dns', True)
-#     profile.update_preferences()
-#     options.profile = profile
-#     service = Service(geckodriver_path)
-#     driver = webdriver.Firefox(service=service, options=options)
-#     return driver
-
 def create_driver():
-    chrome_options = Options()
-    # chrome_options.add_argument('--headless=new')
-    chrome_options.add_argument('--disable-gpu')
-    chrome_options.add_argument('--no-sandbox')
-
-    driver = webdriver.Chrome(options=chrome_options)
+    geckodriver_path = '/Users/othmaneirhboula/webscraping/geckodriver'
+    options = Options()
+    options.headless = False
+    profile = webdriver.FirefoxProfile()
+    profile.set_preference('permissions.default.image', 2)
+    profile.set_preference('network.proxy.type', 1)
+    profile.set_preference('network.proxy.socks', '127.0.0.1')
+    profile.set_preference('network.proxy.socks_port', 9150)
+    profile.set_preference('network.proxy.socks_version', 5)
+    profile.set_preference('network.proxy.socks_remote_dns', True)
+    profile.update_preferences()
+    options.profile = profile
+    service = Service(geckodriver_path)
+    driver = webdriver.Firefox(service=service, options=options)
     return driver
+
 
 csv_file = '/Users/othmaneirhboula/WebScrap/filtered_url.csv'
 output_csv_file1 = 'Output/suit.csv'

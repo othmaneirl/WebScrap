@@ -87,6 +87,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/Avito/Liens/NumTelBoutiques.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/Charika.ma/Classements/classement2011.csv">
           <value>
             <Attribute>
