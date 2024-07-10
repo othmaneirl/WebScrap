@@ -213,6 +213,20 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/Kerix-export/Liens/Liens.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/Kerix/Liens/Liens.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/filtered_url.csv">
           <value>
             <Attribute>

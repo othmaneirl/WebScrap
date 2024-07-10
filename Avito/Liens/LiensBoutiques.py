@@ -1,3 +1,4 @@
+# Description: Ce script permet de récupérer les liens des boutiques et le nombre d'articles de chaque boutique
 import requests
 from bs4 import BeautifulSoup
 import csv

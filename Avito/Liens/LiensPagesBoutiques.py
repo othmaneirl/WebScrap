@@ -1,3 +1,4 @@
+# Description: Ce script permet de générer les liens des pages des articles de chaque boutique.
 import pandas as pd
 import csv
 

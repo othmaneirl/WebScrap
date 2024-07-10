@@ -1,3 +1,4 @@
+# Description : Ce script permet de récupérer tous les liens des articles de chaque page
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
