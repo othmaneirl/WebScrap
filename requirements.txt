@@ -1,0 +1,9 @@
+
+numpy
+pandas
+selenium
+beautifulsoup4
+lxml
+requests
+unidecode
+multiprocessing
