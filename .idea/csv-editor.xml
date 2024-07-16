@@ -59,28 +59,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="/Avito/Liens/LiensArticlesPages.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Avito/Liens/LiensBoutiques.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="/Avito/Liens/LiensBoutiquesArticles.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Avito/Liens/LiensBoutiquesArticlesSup0.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
@@ -224,6 +203,20 @@
           <value>
             <Attribute>
               <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/Yakeey_Final/Liens/Liens.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/Yakeey_Final/Liens/Liens2.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
             </Attribute>
           </value>
         </entry>

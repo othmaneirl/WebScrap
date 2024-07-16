@@ -53,13 +53,33 @@ def extract_info(url):
         Tel2 = extract_xpath_text('/html/body/div[4]/div[4]/div/div/div/div[2]/div[2]/div/p[2]')
         Tel3 = extract_xpath_text('/html/body/div[4]/div[4]/div/div/div/div[2]/div[2]/div/p[3]')
         Fax = extract_text('div', {"id": "collapseExample2"})
-        Site = extract_text('a', {'class': 'btn btn-down website'})
-        Effectif = extract_xpath_text('/html/body/div[4]/div[5]/div/div/div[1]/span').split(': ')[1].replace('\n', '')  #traitement de la chaine de caractères pour ne garder que la valeur utile
-        Capital = extract_xpath_text('/html/body/div[4]/div[5]/div/div/div[3]/span').split(': ')[1].replace('\n', '') #traitement de la chaine de caractères pour ne garder que la valeur utile
+        try:
+            Site = soup.find('a', class_='btn btn-down website').get('href')
+        except Exception:
+            Site = "N/A"
+        Effectif = extract_xpath_text('/html/body/div[4]/div[5]/div/div/div[1]/span')
+        try:
+            Effectif=Effectif.split(': ')[1].replace('\n', '')  #traitement de la chaine de caractères pour ne garder que la valeur utile
+        except:
+            Effectif = Effectif
+
+        Capital = extract_xpath_text('/html/body/div[4]/div[5]/div/div/div[3]/span')
+        try:
+            Capital= Capital.split(': ')[1] #traitement de la chaine de caractères pour ne garder que la valeur utile
+        except:
+            Capital = Capital
         CA = extract_xpath_text('/html/body/div[4]/div[5]/div/div/div[2]/span')
         RC = extract_xpath_text('/html/body/div[4]/div[5]/div/div/div[4]/span')
-        Creation = extract_xpath_text('/html/body/div[4]/div[5]/div/div/div[5]/span').replace('\n', '') #traitement de la chaine de caractères pour ne garder que la valeur utile
-        ICE = extract_xpath_text('/html/body/div[4]/div[5]/div/div/div[6]')
+        Creation = extract_xpath_text('/html/body/div[4]/div[5]/div/div/div[5]/span')
+        try:
+            Creation= Creation.replace('\n', '') #traitement de la chaine de caractères pour ne garder que la valeur utile
+        except:
+            Creation = Creation
+        ICE = extract_xpath_text('/html/body/div[4]/div[5]/div/div/div[6]/span')
+        try:
+            ICE = ICE.replace('ICE : ', '') #traitement de la chaine de caractères pour ne garder que la valeur utile
+        except:
+            ICE = ICE
         RespoExport = extract_text('p', {"class": "par-list"})
         Activite = extract_xpath_text('/html/body/div[4]/div[9]/div/div/div/p')
 
@@ -67,15 +87,22 @@ def extract_info(url):
         try:
             Capital = Capital.replace('\n', '')
             Capital = Capital.replace('CAPITAL : ','')
-            FormeJuridique, Capital = Capital.split(' ')
+            FormeJuridique, Capital = splitchiffres(Capital)
         except Exception:
             FormeJuridique = "N/A"
 
         try:
             RC = RC.replace('\n', '')
+            RC= RC.replace('RC : ','')
             RC, VilleTribunal = splitchiffres(RC)
+
         except Exception:
             VilleTribunal = "N/A"
+        try:
+            Creation= Creation.replace('\n', '')
+            Creation= Creation.replace('CREATION : ','')
+        except:
+            Creation = Creation
 
 
 
@@ -95,10 +122,10 @@ def extract_info(url):
             produits = produits[21:]  #garde seulement la partie utile
 
         sitesupp = ['https://kerix-export.net' + link['href'] for link in soup.find_all('a', href=True) if link['href'].startswith(url)]
-
+        zoneexport = extract_xpath_text('/html/body/div[4]/div[13]/div/div/div/div/div/span')
         return [
             f'https://www.kerix-export.net{url}', Entreprise, Adresse, Tel, Tel2, Tel3, Fax, Site, Effectif,
-            FormeJuridique, CA, Capital, RC, VilleTribunal, Creation, ICE, RespoExport, Activite, produits, sitesupp
+            FormeJuridique, CA, Capital, RC, VilleTribunal, Creation, ICE, RespoExport, Activite, produits, zoneexport, sitesupp
         ]
     else:
         print(f"Erreur lors de la requête: {response.status_code}")
@@ -109,19 +136,19 @@ data = []
 
 # Décommenter ces lignes pour utiliser ThreadPoolExecutor pour le traitement en parallèle
 with ThreadPoolExecutor(max_workers=4) as executor:    #il y aura au plus 4 executions en parallèle
-    results = executor.map(extract_info, [url[0] for url in urls[:200]])  #on execute le code seulement sur les 200 premières entreprises pour cet échantillon de test
+    results = executor.map(extract_info, [url[0] for url in urls])  #on execute le code seulement sur les 200 premières entreprises pour cet échantillon de test
 for result in results:
     if result is not None:
         data.append(result)
 
 df = pd.DataFrame(data, columns=[
-    'URL', 'Entreprise', 'Adresse', 'Tel', 'Tel2', 'Tel3', 'Fax', 'Site', 'Effectif', 'FormeJuridique', 'ChiffreAffaire', 'Capital', 'RC', 'VilleTribunal', 'Creation', 'ICE', 'Dirigeant', 'Activite', 'Produits Exportes', 'SitesSupp'
+    'URL', 'Entreprise', 'Adresse', 'Tel', 'Tel2', 'Tel3', 'Fax', 'Site', 'Effectif', 'FormeJuridique', 'ChiffreAffaire', 'Capital', 'RC', 'VilleTribunal', 'Creation', 'ICE', 'Dirigeant', 'Activite', 'Produits Exportes', "Zone d'exportation",'SitesSupp'
 ])
-df.to_excel('/Users/othmaneirhboula/WebScrap/Kerix-export/test.xlsx', index=False)
+df.to_excel('/Users/othmaneirhboula/WebScrap/Kerix-export/ScrapingKerix-Export_final.xlsx', index=False)
 
 # Décommenter pour tester une URL
 # print([
 #     'URL', 'Entreprise', 'Adresse', 'Tel', 'Tel2', 'Tel3', 'Fax', 'Site', 'Effectif', 'FormeJuridique',
-#     'ChiffreAffaire', 'Capital', 'RC', 'VilleTribunal', 'Creation', 'ICE', 'Dirigeant', 'Activite', 'Produits Exportes', 'SitesSupp'
+#     'ChiffreAffaire', 'Capital', 'RC', 'VilleTribunal', 'Creation', 'ICE', 'Dirigeant', 'Activite', 'Produits Exportes', 'Zone export', 'SitesSupp'
 # ])
-# print(extract_info('/fr/entreprise/tecnolec'))
+# print(extract_info('/fr/entreprise/acrow-morocco'))

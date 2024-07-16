@@ -125,7 +125,7 @@ data = []
 
 # Utiliser ThreadPoolExecutor pour exécuter les tâches en parallèle
 with ThreadPoolExecutor(max_workers=4) as executor:
-    results = executor.map(extract_info, [url[0] for url in urls[:200]])
+    results = executor.map(extract_info, [url[0] for url in urls[:2000]])
     for result in results:
         if result is not None:
             data.append(result)
@@ -135,7 +135,7 @@ df = pd.DataFrame(data, columns=[
     'URL', 'Entreprise', 'Adresse', 'Tel', 'Tel2', 'Tel3', 'Fax', 'Site', 'Effectif', 'FormeJuridique',
     'ChiffreAffaire', 'Capital', 'RC', 'VilleTribunal', 'Creation', 'ICE', 'Dirigeant', 'Activite', 'Produits', 'SitesSupp'
 ])
-df.to_excel('/Users/othmaneirhboula/WebScrap/Kerix/ScrapingKerixtestnew.xlsx', index=False)
+df.to_excel('/Users/othmaneirhboula/WebScrap/Kerix/testTemps.xlsx', index=False)
 
 # Affichage des produits
 print(df['Produits'])
