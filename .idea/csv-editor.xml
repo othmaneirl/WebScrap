@@ -52,6 +52,34 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/Airbnb_Final/Liens/Liens.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/Airbnb_Final/Liens/LiensAnnonces.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/Airbnb_Final/Liens/LiensCorriges.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/Airbnb_Final/Liens/LiensTotal.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/Avito/Liens/Liens.csv">
           <value>
             <Attribute>
@@ -206,14 +234,42 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="/Yakeey_Final/Liens/Liens.csv">
+        <entry key="/Mubawab/Liens/Liens.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/Mubawab/Liens/LiensVilles.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/Mubawab/Liens/Liens_Loc.csv">
           <value>
             <Attribute>
               <option name="separator" value=":" />
             </Attribute>
           </value>
         </entry>
-        <entry key="/Yakeey_Final/Liens/Liens2.csv">
+        <entry key="/Mubawab/Liens/Liens_Loc_Vac.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="$APPLICATION_CONFIG_DIR$/scratches/LiensVilles.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/Yakeey_Final/Liens/Liens.csv">
           <value>
             <Attribute>
               <option name="separator" value=":" />

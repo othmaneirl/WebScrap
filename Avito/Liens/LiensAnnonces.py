@@ -46,4 +46,4 @@ if __name__ == '__main__':
         for line in liens:
             writer.writerow([line])
 
-    print(f"Les données ont été enregistrées dans Liens.csv")
+    print(f"Les données ont été enregistrées dans LiensVilles.csv")
