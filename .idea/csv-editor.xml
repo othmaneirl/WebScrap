@@ -17,41 +17,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="/Airbnb/Res.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value=":" />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Airbnb/donnees.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Airbnb/donnees2.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Airbnb/infos.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Airbnb/links_maroc.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value=":" />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="/Airbnb_Final/Liens/Liens.csv">
           <value>
             <Attribute>
@@ -59,21 +24,7 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="/Airbnb_Final/Liens/LiensAnnonces.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value=":" />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="/Airbnb_Final/Liens/LiensCorriges.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value=":" />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Airbnb_Final/Liens/LiensTotal.csv">
           <value>
             <Attribute>
               <option name="separator" value=":" />
@@ -228,20 +179,6 @@
           </value>
         </entry>
         <entry key="/Kerix/Liens/Liens.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Mubawab/Liens/Liens.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Mubawab/Liens/LiensVilles.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

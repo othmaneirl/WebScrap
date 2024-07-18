@@ -62,7 +62,8 @@ def extract_info(url):
         colonnes = [x.text.strip() for x in soup.findAll('p', attrs={'class': 'adMainFeatureContentLabel'})]
         lignes = [x.text.strip() for x in soup.findAll('p', attrs={'class': 'adMainFeatureContentValue'})]
         owner = extract_text('span', {'class': 'link businessName'})
-        data={ 'URL':url,'Titre': title, 'Prix': price, 'Lieu': place, 'Owner': owner, 'Surface': surface, 'Pièces': pieces, 'Chambres': chambres, 'Salles de bain': bains}
+        Description = extract_CSS_text("body > section > div.contnr1100.adContnr > div.row.disFlex > div > div:nth-child(4) > p")
+        data={ 'URL':url,'Titre': title, 'Prix': price, 'Lieu': place, 'Owner': owner, 'Surface': surface, 'Pièces': pieces, 'Chambres': chambres, 'Salles de bain': bains, 'Description': Description}
         data.update(dict(zip(colonnes, lignes)))
         # owner         non disponible sur le site
         bouton_tel = driver.find_element(By.XPATH, '//*[@id="stickyDiv"]/div/div[2]/div[1]/div/div')
@@ -93,5 +94,5 @@ df = pd.DataFrame(data)
 df.replace('\xa0', ' ', regex=True, inplace=True)
 df.replace('\n', '', regex=True, inplace=True)
 df.replace('\t', '', regex=True, inplace=True)
-df.to_excel('/Users/othmaneirhboula/WebScrap/Mubawab/ScrapingMubawab.xlsx', index=False)
+df.to_excel('/Users/othmaneirhboula/WebScrap/Mubawab/ScrapingMubawab_Final.xlsx', index=False)
 # print(extract_info('https://www.mubawab.ma/fr/pa/7837256/vend-appartement-en-centre-superficie-114-m²'))

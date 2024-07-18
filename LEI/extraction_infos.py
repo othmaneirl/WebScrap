@@ -62,30 +62,19 @@ def extract_info(url):  #fonction qui extrait les informations d'une entreprise 
         })
         return lei_data
     else:  #si la page n'est pas accessible on retourne des valeurs par défaut
-        return {
-            'lei': "N/A",
-            'Entity_Name': "N/A",
-            'Entity_Status': "N/A",
-            'Legal_Form': "N/A",
-            'Registered_by': "N/A",
-            'Registration_id': "N/A",
-            'Legal_jurisdiction': "N/A",
-            'Legal_address': "N/A",
-            'headquarters_address': "N/A",
-            'Description': "N/A"
-        }
+        return None
 
 #on crée un dataframe contenant les informations de toutes les entreprises
-# data = []
-# with ThreadPoolExecutor(max_workers=4) as executor:    #il y aura au plus 4 executions en parallèle
-#     results = executor.map(extract_info, [url[0] for url in urls[:200]])  #on execute le code seulement sur les 200 premières entreprises pour cet échantillon de test
-# for result in results:
-#     if result is not None:
-#         data.append(result)
-#
-# df = pd.DataFrame(data)
-# df.to_excel('/Users/othmaneirhboula/WebScrap/LEI/ScrapingYakeey.xlsx', index=False)
+data = []
+with ThreadPoolExecutor(max_workers=4) as executor:    #il y aura au plus 4 executions en parallèle
+    results = executor.map(extract_info, [url[0] for url in urls[:2000]])  #on execute le code seulement sur les 200 premières entreprises pour cet échantillon de test
+for result in results:
+    if result is not None:
+        data.append(result)
+
+df = pd.DataFrame(data)
+df.to_excel('/Users/othmaneirhboula/WebScrap/LEI/Scrapingbis.xlsx', index=False)
 
 #pour tester le code sur une seule entreprise
-print(extract_info(urls[0][0]))
+# print(extract_info(urls[0][0]))
 
