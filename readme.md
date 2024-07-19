@@ -174,13 +174,10 @@ Chaque répertoire contient des instructions spécifiques sur la façon d'exécu
 
 ## Contact
 
-Pour toute question ou information supplémentaire, vous pouvez me contacter à l'adresse suivante :
+Pour toute question ou information supplémentaire, vous pouvez me contacter ici :
 
 
-
-## Auteur
-
-- Fait par **IRHBOULA Othmane**
+**IRHBOULA Othmane:**
 - **Email**: oirhboula@gmail.com
 - **Numéro de téléphone**: +33 6 22 09 12 47 / +212 7 08 57 92 20
 - **LinkedIn**: [Profil LinkedIn](https://www.linkedin.com/in/othmane-irhboula/)
