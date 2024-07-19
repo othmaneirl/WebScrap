@@ -1,3 +1,6 @@
+# Ce code permet de récuperer les informations des annonces du site Yakeey avec bs4
+
+# 1000 Sites scrapés en 5 minutes
 import requests
 from bs4 import BeautifulSoup
 from lxml import etree #permet de localiser les elements par xpath

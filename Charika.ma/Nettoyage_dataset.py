@@ -1,3 +1,4 @@
+# Ce code permet de nettoyer le dataset renvoyé par le code "collecte_infos_multi.py" pour le rendre plus lisible et plus facile à manipuler
 import pandas as pd
 
 # Charger le fichier Excel

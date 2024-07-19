@@ -1,3 +1,7 @@
+#Ce code permet d'extraire les infos utiles de kerix-export.net avec bs4
+
+#2000 Sites Scrapés en 5 minutes
+
 import requests
 from bs4 import BeautifulSoup
 from lxml import etree #permet de localiser les elements par xpath

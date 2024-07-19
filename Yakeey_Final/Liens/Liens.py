@@ -1,3 +1,4 @@
+# Ce code permet de récuperer les urls des annonces sur le site Yakeey
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd

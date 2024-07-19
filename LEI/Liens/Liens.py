@@ -1,3 +1,4 @@
+# Ce code permet de récuperer les identifiants de chaque entreprise qui vont permettre de génerer leurs urls
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd

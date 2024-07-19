@@ -1,3 +1,4 @@
+# Code pour filtrer les URLs de 1.csv qui ne sont pas présents dans 2.csv
 import pandas as pd
 
 # Chemins vers les fichiers CSV

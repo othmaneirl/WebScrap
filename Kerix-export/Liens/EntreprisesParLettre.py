@@ -1,3 +1,4 @@
+# Ce code permet de génerer les urls de recherche des entreprises par ordre alphabétique sur le site kerix-export.net
 import requests
 from bs4 import BeautifulSoup
 from lxml import etree

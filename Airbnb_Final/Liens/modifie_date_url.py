@@ -1,3 +1,4 @@
+# Ce script permet de modifier les dates de check-in et check-out dans les URLs des liens Airbnb.
 import csv
 from datetime import datetime, timedelta
 from urllib.parse import urlparse, parse_qs, urlencode, urlunparse

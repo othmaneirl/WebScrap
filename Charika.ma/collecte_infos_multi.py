@@ -1,3 +1,6 @@
+# Ce code permet d'extraire les informations des entreprises disponibles sur charika.ma en utilisant le module selenium et le multiprocessing pour accélérer le processus
+
+# 100 sites scrapés en 1 minute 30
 import csv
 import multiprocessing
 import os
@@ -29,8 +32,9 @@ def create_driver():
     return driver
 
 
+
 csv_file = '/Users/othmaneirhboula/WebScrap/filtered_url.csv'
-output_csv_file1 = 'Output/suit.csv'
+output_csv_file1 = 'Output/test.csv'
 output_csv_file = output_csv_file1[7:]
 with open(csv_file, 'r') as file:
     csv_reader = csv.reader(file)

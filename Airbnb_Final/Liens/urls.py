@@ -1,3 +1,4 @@
+# Ce script permet de récupérer les liens des annonces Airbnb à partir d'une liste de liens de recherche
 import pandas as pd
 def generate_airbnb_urls(cities_neighborhoods):
     base_url = "https://www.airbnb.com/s/{neighborhood}-{city}-Morocco/homes"

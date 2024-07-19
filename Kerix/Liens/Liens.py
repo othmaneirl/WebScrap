@@ -1,3 +1,4 @@
+# Ce code permet d'aller sur chaque URL de recherche des entreprises par lettre sur le site kerix.net et de récupérer les liens des entreprises sur chaque page.
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd

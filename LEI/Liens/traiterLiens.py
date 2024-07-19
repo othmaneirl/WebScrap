@@ -1,3 +1,4 @@
+#Ce code permet de génerer les urls de chaque entreprise à partir de leurs identifiants
 import pandas as pd
 
 

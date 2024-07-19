@@ -1,3 +1,7 @@
+#Ce code permet de récuperer les informations de chaque entreprise avec bs4
+
+# 2000 Sites scrapés en 15 minutes
+
 import requests
 from bs4 import BeautifulSoup
 from lxml import etree #permet de localiser les elements par xpath

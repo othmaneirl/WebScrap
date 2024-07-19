@@ -1,0 +1,2 @@
+1- Executer 'urls.py'  en modifiant l'url de base a la ligne 25 et le nombre de pages maximum
+2- Executer 'extraction_infos.py' pour extraire les informations des pages

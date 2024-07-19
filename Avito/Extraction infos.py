@@ -1,3 +1,8 @@
+# Ce code permet d'extraire les données des annonces à partir d'un fichier csv contenant toutes les urls a scraper
+
+#2000 annonces scrapées en 5 minutes
+
+
 import requests
 from bs4 import BeautifulSoup
 from lxml import etree

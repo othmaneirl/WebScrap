@@ -1,3 +1,4 @@
+# Ce script permet de récupérer les liens des annonces Airbnb à partir d'une liste de liens de recherche
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
@@ -15,7 +16,7 @@ chrome_options = Options()
 chrome_options.add_argument('--headless=new')
 chrome_options.add_argument('--disable-gpu')
 chrome_options.add_argument('--no-sandbox')
-chrome_options.add_argument('--blink-settings=imagesEnabled=false')
+chrome_options.add_argument('--blink-settings=imagesEnabled=false')  # Désactiver les images
 
 def geturl(url):
     driver = webdriver.Chrome(options=chrome_options)
@@ -24,7 +25,7 @@ def geturl(url):
     try:
         driver.get(url)
         # Extraire les URLs des 15 premières pages
-        for i in range(14):  # Nous avons déjà la première page
+        for i in range(14):
             try:
                 content = driver.page_source
                 soup = bs4.BeautifulSoup(content, 'html.parser')

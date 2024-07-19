@@ -1,3 +1,4 @@
+# Ce code permet de récuperer les liens des annonces 'achat, location, location vacances...) du site Mubawab
 import requests
 from bs4 import BeautifulSoup
 from concurrent.futures import ThreadPoolExecutor, as_completed

@@ -1,3 +1,7 @@
+# Ce code permet d'extraire les informations utiles du site kerix.net avec bs4
+
+# 2000 Sites scrapés en 15 minutes
+
 import requests
 from bs4 import BeautifulSoup
 from lxml import etree

@@ -1,0 +1,6 @@
+ordre d'execution des fichiers:
+1-  LiensBoutiques.py
+2-  LiensPagesBoutiques.py
+3-  LiensAnnonces.py
+4-  NumTelBoutiques.py
+5-  Extraction infos.py

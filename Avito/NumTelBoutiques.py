@@ -1,3 +1,4 @@
+# Ce code permet d'associer un numero de téléphone a chaque boutique pour nous éviter d'avoir à utiliser selenium pour le scraping de toutes les annonces
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options

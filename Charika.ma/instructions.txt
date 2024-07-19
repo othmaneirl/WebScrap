@@ -1,0 +1,8 @@
+Pour extraction des données de toutes les sociétés:
+1-  Executer "Liens.py" pour extraire les liens des sociétés
+2-  Executer "collecte_infos_multi.py" pour extraire les données des sociétés avec un multiprocessing de 4
+3-  Executer "Nettoyage_dataset.py" pour nettoyer les données
+
+Pour extraction des classements des sociétés par année:
+1- Executer "classement.py" en spécifiant l'année n
+2- Executer "collecte_infos.py" pour extraire les données des 1000 premières sociétés marocaines de l'année n

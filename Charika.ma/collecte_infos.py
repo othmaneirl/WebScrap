@@ -1,3 +1,4 @@
+#Code pour collecter les informations des 1000 premières entreprises de l'année n sur au maroc
 import csv
 from unidecode import unidecode
 from selenium import webdriver
