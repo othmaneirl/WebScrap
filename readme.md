@@ -3,7 +3,7 @@
 
 ## Description
 
-**WebScrap** est un projet de web scraping conçu pour extraire et analyser des données à partir de plusieurs sites web. Ce projet utilise Python et ses bibliothèques associées pour effectuer des tâches de scraping de manière efficace et structurée.
+**WebScrap** est un projet de web scraping conçu pour extraire et analyser des données à partir de plusieurs sites web. Ce projet utilise Python et ses bibliothèques associées (Selenium, bs4, lxml...) pour effectuer des tâches de scraping de manière efficace et structurée.
 
 ## Table des matières
 
@@ -55,11 +55,7 @@ Pour installer et exécuter ce projet localement, suivez les étapes suivantes :
 
 ## Utilisation
 
-Pour utiliser le scraper, exécutez le script principal avec les paramètres souhaités. Voici un exemple :
-
-```bash
-python ExtractionInfosKerix.py
-```
+Pour utiliser le scraper, suivez les instructions disponible pour chaque site dans "instructions.txt"
 
 Assurez-vous de configurer les paramètres de scraping dans le fichier de configuration avant de lancer le script.
 
