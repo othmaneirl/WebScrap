@@ -51,4 +51,4 @@ cities_neighborhoods = {
 
 urls = generate_airbnb_urls(cities_neighborhoods)
 urls = pd.DataFrame(urls, columns=['URL','Quartier','Ville'])
-urls.to_csv('Liens/test.csv', index=False)
+urls.to_csv('test.csv', index=False)

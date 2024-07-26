@@ -44,4 +44,4 @@ for type, max_page in types_and_pages.items():
 # Convertir les résultats en DataFrame
 df = pd.DataFrame(results, columns=['URL'])
 print(df)
-df.to_csv('/Users/othmaneirhboula/WebScrap/Yakeey_Final/Liens/Liens.csv', index=False)
+df.to_csv('Liens.csv', index=False)

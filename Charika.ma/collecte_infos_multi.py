@@ -33,7 +33,7 @@ def create_driver():
 
 
 
-csv_file = '/Users/othmaneirhboula/WebScrap/filtered_url.csv'
+csv_file = 'filtered_url.csv'
 output_csv_file1 = 'Output/test.csv'
 output_csv_file = output_csv_file1[7:]
 with open(csv_file, 'r') as file:

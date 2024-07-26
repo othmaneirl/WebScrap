@@ -20,7 +20,7 @@ def splitchiffres(s):  #permet de split une chaine de caractères en une chaine 
     return s, ""
 
 # Chemin vers le fichier CSV contenant les URL
-lienscsv = '/Users/othmaneirhboula/WebScrap/Kerix-export/Liens/Liens.csv'
+lienscsv = 'Liens/Liens.csv'
 df = pd.read_csv(lienscsv)
 urls = df.values.tolist()
 
@@ -148,7 +148,7 @@ for result in results:
 df = pd.DataFrame(data, columns=[
     'URL', 'Entreprise', 'Adresse', 'Tel', 'Tel2', 'Tel3', 'Fax', 'Site', 'Effectif', 'FormeJuridique', 'ChiffreAffaire', 'Capital', 'RC', 'VilleTribunal', 'Creation', 'ICE', 'Dirigeant', 'Activite', 'Produits Exportes', "Zone d'exportation",'SitesSupp'
 ])
-df.to_excel('/Users/othmaneirhboula/WebScrap/Kerix-export/ScrapingKerix-Export_final.xlsx', index=False)
+df.to_excel('ScrapingKerix-Export_final.xlsx', index=False)
 
 # Décommenter pour tester une URL
 # print([

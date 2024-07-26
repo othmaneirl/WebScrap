@@ -21,11 +21,11 @@ def csv_to_dict(filename): # Fonction pour convertir les colonnes d'un fichier C
     return result_dict
 
 # Chemin vers le fichier CSV contenant les numéros de téléphone
-filename = '/Users/othmaneirhboula/WebScrap/Avito/Liens/NumTelBoutiques.csv'
+filename = 'Liens/NumTelBoutiques.csv'
 numeros = csv_to_dict(filename)
 
 # Chemin vers le fichier CSV contenant les URL
-lienscsv = '/Users/othmaneirhboula/WebScrap/Avito/Liens/Liens.csv'
+lienscsv = 'Liens/Liens.csv'
 df = pd.read_csv(lienscsv)
 urls = df.values.tolist()
 
@@ -88,5 +88,5 @@ for result in results:
 
 # Enregistrer les résultats dans un fichier Excel
 df = pd.DataFrame(data, columns=['annonceur', 'article', 'prix', 'categorie', 'sous-categorie', 'date_annonce', 'ville', 'tel', 'URL'])
-df.to_excel('/Users/othmaneirhboula/WebScrap/Avito/ScrapingAvito.xlsx', index=False)
+df.to_excel('ScrapingAvito.xlsx', index=False)
 

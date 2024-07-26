@@ -21,7 +21,7 @@ def enlever_doublons(liste_de_listes):
 
     return liste_sans_doublons
 
-lienscsv = 'Liens/test.csv'
+lienscsv = 'test.csv'
 df = pd.read_csv(lienscsv)
 urls = df.values.tolist()
 
@@ -97,4 +97,4 @@ with ThreadPoolExecutor(max_workers=4) as executor:
 # print(len(urls_total))
 urls_total = enlever_doublons(urls_total)
 csv = pd.DataFrame(urls_total, columns=['URL', 'Quartier', 'Ville'])
-csv.to_csv('Liens/test2.csv', index=False)
+csv.to_csv('test2.csv', index=False)

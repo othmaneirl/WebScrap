@@ -18,7 +18,7 @@ def splitchiffres(s):  #permet de split une chaine de caractères en une chaine 
     return s, ""
 
 # Chemin vers le fichier CSV contenant les URL
-lienscsv = '/Users/othmaneirhboula/WebScrap/Yakeey_Final/Liens/Liens.csv'
+lienscsv = 'Liens/Liens.csv'
 df = pd.read_csv(lienscsv)
 urls = df.values.tolist()
 
@@ -91,7 +91,7 @@ for result in results:
         data.append(result)
 
 df = pd.DataFrame(data)
-df.to_excel('/Users/othmaneirhboula/WebScrap/Yakeey_final/ScrapingYakeey.xlsx', index=False)
+df.to_excel('ScrapingYakeey.xlsx', index=False)
 
 #pour tester le code sur une seule annonce
 # print(extract_info('https://yakeey.com/fr-ma/programme/acheter-appartement-casablanca-oulfa-pc000152'))

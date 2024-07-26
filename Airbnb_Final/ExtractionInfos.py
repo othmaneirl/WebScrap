@@ -113,7 +113,7 @@ df = pd.DataFrame(data)
 df.replace('\xa0', ' ', regex=True, inplace=True)
 df.replace('·  ·', '/', regex=True, inplace=True)
 # Enregistrer les données dans un fichier excel
-df.to_excel('/Users/othmaneirhboula/WebScrap/Airbnb_Final/test45.xlsx', index=False)
+df.to_excel('test45.xlsx', index=False)
 
 # Décommenter la ligne suivante pour tester une seule URL
 # print(extract_info("https://fr.airbnb.com/rooms/518105886245259262?adults=1&children=0&enable_m3_private_room=true&infants=0&pets=0&search_mode=regular_search&check_in=2024-10-15&check_out=2024-10-17&source_impression_id=p3_1721207008_P3y0GhNGFEL0EsJ1&previous_page_section_name=1000&federated_search_id=753d56dd-e651-461b-aa69-55db28791cf8&_set_bev_on_new_domain=1721132874_EANjNmZmExZDM1OG"))

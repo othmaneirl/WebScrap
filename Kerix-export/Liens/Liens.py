@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 from concurrent.futures import ThreadPoolExecutor
 
-entrprisesparlettre = '/Users/othmaneirhboula/WebScrap/Kerix-export/Liens/kerix-export.xlsx'
+entrprisesparlettre = 'kerix-export.xlsx'
 df = pd.read_excel(entrprisesparlettre)
 urls = df.values.tolist()
 

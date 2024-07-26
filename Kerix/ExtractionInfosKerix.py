@@ -21,7 +21,7 @@ def splitchiffres(s):
     return s, ""
 
 # Chemin vers le fichier CSV contenant les URL
-lienscsv = '/Users/othmaneirhboula/WebScrap/Kerix/Liens/Liens.csv'
+lienscsv = 'Liens/Liens.csv'
 df = pd.read_csv(lienscsv)
 urls = df.values.tolist()
 
@@ -139,7 +139,7 @@ df = pd.DataFrame(data, columns=[
     'URL', 'Entreprise', 'Adresse', 'Tel', 'Tel2', 'Tel3', 'Fax', 'Site', 'Effectif', 'FormeJuridique',
     'ChiffreAffaire', 'Capital', 'RC', 'VilleTribunal', 'Creation', 'ICE', 'Dirigeant', 'Activite', 'Produits', 'SitesSupp'
 ])
-df.to_excel('/Users/othmaneirhboula/WebScrap/Kerix/testTemps.xlsx', index=False)
+df.to_excel('ScrapingKerix.xlsx', index=False)
 
 # Affichage des produits
 print(df['Produits'])

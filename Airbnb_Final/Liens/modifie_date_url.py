@@ -37,8 +37,8 @@ def adjust_dates_in_csv(input_csv, output_csv, months_delta):
                 writer.writerow(updated_url)
 
 
-input_csv = 'Liens/test2.csv'
-output_csv = 'Liens/test3.csv'
+input_csv = 'test2.csv'
+output_csv = 'test3.csv'
 months_delta = 3
 
 adjust_dates_in_csv(input_csv, output_csv, months_delta)

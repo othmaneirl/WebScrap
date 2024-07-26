@@ -20,7 +20,7 @@ def splitchiffres(s):  #permet de split une chaine de caractères en une chaine 
     return s, ""
 
 # Chemin vers le fichier CSV contenant les URL
-lienscsv = '/Users/othmaneirhboula/WebScrap/LEI/Liens/Liens.csv'
+lienscsv = 'Liens/Liens.csv'
 df = pd.read_csv(lienscsv)
 urls = df.values.tolist()
 
@@ -77,7 +77,7 @@ for result in results:
         data.append(result)
 
 df = pd.DataFrame(data)
-df.to_excel('/Users/othmaneirhboula/WebScrap/LEI/Scrapingbis.xlsx', index=False)
+df.to_excel('Scrapingbis.xlsx', index=False)
 
 #pour tester le code sur une seule entreprise
 # print(extract_info(urls[0][0]))

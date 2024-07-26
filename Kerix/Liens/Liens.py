@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 from concurrent.futures import ThreadPoolExecutor
 
-entrprisesparlettre = '/Users/othmaneirhboula/WebScrap/Kerix/Liens/kerix.xlsx' # Chemin vers le fichier Excel contenant les URL de chaque recherche et le nombre de pages à parcourir par lettre
+entrprisesparlettre = 'Liens/kerix.xlsx' # Chemin vers le fichier Excel contenant les URL de chaque recherche et le nombre de pages à parcourir par lettre
 df = pd.read_excel(entrprisesparlettre)  #lire le fichier excel
 urls = df.values.tolist()          #convertir le dataframe en liste
 

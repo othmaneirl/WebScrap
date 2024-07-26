@@ -9,7 +9,7 @@ import bs4
 import pandas as pd
 from lxml import etree
 import time
-lienscsv = '/Users/othmaneirhboula/WebScrap/Mubawab/Liens/Liens_Ach.csv'
+lienscsv = 'Liens/Liens_Ach.csv'
 df = pd.read_csv(lienscsv)
 urls = df.values.tolist()
 
@@ -97,5 +97,5 @@ df = pd.DataFrame(data)
 df.replace('\xa0', ' ', regex=True, inplace=True)
 df.replace('\n', '', regex=True, inplace=True)
 df.replace('\t', '', regex=True, inplace=True)
-df.to_excel('/Users/othmaneirhboula/WebScrap/Mubawab/ScrapingMubawab_Final.xlsx', index=False)
+df.to_excel('ScrapingMubawab_Final.xlsx', index=False)
 # print(extract_info('https://www.mubawab.ma/fr/a/7955743/location-villa-%C3%A0-palmeraie'))

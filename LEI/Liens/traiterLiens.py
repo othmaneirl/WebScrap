@@ -2,7 +2,7 @@
 import pandas as pd
 
 
-LiensCSV= '/Users/othmaneirhboula/WebScrap/LEI/Liens/Liens.csv'
+LiensCSV= 'Liens.csv'
 df = pd.read_csv(LiensCSV)  #lire le csv
 urls = df.values.tolist()
 Liens= []

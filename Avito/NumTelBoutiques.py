@@ -7,7 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import pandas as pd
 import time
 
-path='/Users/othmaneirhboula/WebScrap/Avito/Liens/LiensBoutiquesArticles.csv'
+path='Liens/LiensBoutiquesArticles.csv'
 
 df = pd.read_csv(path)
 urls = df.values.tolist()
@@ -31,4 +31,4 @@ for url in urls: #boucle pour parcourir les URL
         numero = 'N/A'
     data.append([nom,numero])  #ajouter les données à la liste data
 df=pd.DataFrame(data,columns=['Nom','Numero'])
-df.to_csv('/Users/othmaneirhboula/WebScrap/Avito/Liens/NumTelBoutiques.csv',index=False) #enregistrer les données dans un fichier csv
+df.to_csv('Liens/NumTelBoutiques.csv',index=False) #enregistrer les données dans un fichier csv
