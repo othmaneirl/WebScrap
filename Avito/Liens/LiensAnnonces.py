@@ -4,8 +4,14 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import csv
 from multiprocessing import Pool
+import json
 
-lienscsv = '/Users/othmaneirhboula/WebScrap/Avito/Liens/LiensArticlesPages.csv'
+with open('config.json', 'r') as config_file:
+    config = json.load(config_file)
+
+Output3Avito = config['Output3Avito']
+
+lienscsv = config['Output2Avito']
 df = pd.read_csv(lienscsv)
 urls = df.values.tolist()
 
@@ -40,7 +46,7 @@ if __name__ == '__main__':
 
     liens = [link for sublist in results for link in sublist]
     liens=set(liens)
-    with open('/Users/othmaneirhboula/WebScrap/Avito/Liens/Liens.csv', mode='w', newline='') as file:
+    with open(Output3Avito, mode='w', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(['URL'])
         for line in liens:

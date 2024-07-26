@@ -24,10 +24,59 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/Airbnb_Final/Liens/LiensCasablanca.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/Airbnb_Final/Liens/LiensCorriges.csv">
           <value>
             <Attribute>
               <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/Airbnb_Final/Liens/LiensCorrigesCasa.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/Airbnb_Final/Liens/LiensVilles.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/Airbnb_Final/Liens/test.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/Airbnb_Final/Liens/test2.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/Airbnb_Final/Liens/test3.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/Airbnb_Final/df_info_test.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
             </Attribute>
           </value>
         </entry>
@@ -136,41 +185,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="/Charika.ma/Output/part1_suite.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Charika.ma/Output/part2_suite.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Charika.ma/Output/part3_suite.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Charika.ma/Output/part4_suite.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="/Charika.ma/Output/suite.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="/Kerix-export/Liens/Liens.csv">
           <value>
             <Attribute>
@@ -185,6 +199,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/Mubawab/Liens/Liens_Ach.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/Mubawab/Liens/Liens_Loc.csv">
           <value>
             <Attribute>
@@ -193,6 +214,13 @@
           </value>
         </entry>
         <entry key="/Mubawab/Liens/Liens_Loc_Vac.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="/Mubawab/ScrapingMubawabcoordonnees.csv">
           <value>
             <Attribute>
               <option name="separator" value=":" />

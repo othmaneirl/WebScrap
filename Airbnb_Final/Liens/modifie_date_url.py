@@ -2,10 +2,11 @@
 import csv
 from datetime import datetime, timedelta
 from urllib.parse import urlparse, parse_qs, urlencode, urlunparse
+import json
 
 
 def adjust_dates_in_url(url, months_delta):
-    parsed_url = urlparse(url)
+    parsed_url = urlparse(url[0])
     query_params = parse_qs(parsed_url.query)
 
     if 'check_in' in query_params and 'check_out' in query_params:
@@ -20,9 +21,9 @@ def adjust_dates_in_url(url, months_delta):
 
         new_query_string = urlencode(query_params, doseq=True)
         new_url = urlunparse(parsed_url._replace(query=new_query_string))
-        return new_url
+        return new_url, url[1], url[2]
     else:
-        return url
+        return url[0], url[1], url[2]
 
 
 def adjust_dates_in_csv(input_csv, output_csv, months_delta):
@@ -32,12 +33,12 @@ def adjust_dates_in_csv(input_csv, output_csv, months_delta):
 
         for row in reader:
             if row:
-                updated_url = adjust_dates_in_url(row[0], months_delta)
-                writer.writerow([updated_url])
+                updated_url = adjust_dates_in_url(row, months_delta)
+                writer.writerow(updated_url)
 
 
-input_csv = '/Users/othmaneirhboula/WebScrap/Airbnb_Final/Liens/Liens.csv'
-output_csv = '/Users/othmaneirhboula/WebScrap/Airbnb_Final/Liens/LiensCorriges.csv'
+input_csv = 'Liens/test2.csv'
+output_csv = 'Liens/test3.csv'
 months_delta = 3
 
 adjust_dates_in_csv(input_csv, output_csv, months_delta)

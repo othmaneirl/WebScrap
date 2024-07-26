@@ -9,9 +9,16 @@ import bs4
 import pandas as pd
 from lxml import etree
 import time
-lienscsv = '/Users/othmaneirhboula/WebScrap/Airbnb_Final/Liens/LiensCorriges.csv'
+lienscsv = 'Liens/test3.csv'
 df = pd.read_csv(lienscsv)
 urls = df.values.tolist()
+# proxy_host = 'brd.superproxy.io'
+# proxy_port = '22225'
+# proxy_username = 'brd-customer-hl_433ca550-zone-residential_proxy1'
+# proxy_password = 'qwu2f5xc3vqj'
+
+# Configuration du proxy pour Selenium
+# proxy = f'http://{proxy_username}:{proxy_password}@{proxy_host}:{proxy_port}'
 
 # Options pour le navigateur
 chrome_options = Options()
@@ -19,10 +26,11 @@ chrome_options.add_argument('--headless=new')
 chrome_options.add_argument('--disable-gpu')
 chrome_options.add_argument('--no-sandbox')
 chrome_options.add_argument('--blink-settings=imagesEnabled=false')  # Désactiver les images pour accélérer le chargement
+# chrome_options.add_argument(f'--proxy-server={proxy}')  # Ajouter le proxy
 
 def extract_info(url):
     driver = webdriver.Chrome(options=chrome_options)
-    driver.get(url)
+    driver.get(url[0])
     time.sleep(2)   # Attendre 2 secondes pour que la page se charge
     # Extraire les URLs des 15 premières pages
     try:
@@ -88,7 +96,7 @@ def extract_info(url):
 
         if int(nb_comment)<3:   #si le nombre de commentaires est inférieur à 3, on considère que l'évaluation est "Nouveau" car airbnb necessite au moins 3 évaluations pour afficher une évaluation moyenne
             evaluation = "Nouveau"
-        return {"Nom de l'annonce": nom_annonce, "Type": type, "Informations supplémentaires": info_supp, "Hôte": hote, "Photo Hôte":photo_hote, "Infos hôte":infos_hote ,"Ville": ville, "Nombre de commentaires": nb_comment, "Evaluation": evaluation, "Prix": prix,"Commentaires": commentaires,  "URL": url}
+        return {"Nom de l'annonce": nom_annonce, "Type": type, "Informations supplémentaires": info_supp, "Hôte": hote, "Photo Hôte":photo_hote, "Infos hôte":infos_hote ,"Ville": ville, "Quartier":url[1],"Nombre de commentaires": nb_comment, "Evaluation": evaluation, "Prix": prix,"Commentaires": commentaires,  "URL": url[0]}
     except Exception as e:
         return None
 
@@ -96,17 +104,16 @@ def extract_info(url):
 # Utilisation de ThreadPoolExecutor pour le multithreading
 data = []
 with ThreadPoolExecutor(max_workers=4) as executor:    #il y aura au plus 4 executions en parallèle
-    results = executor.map(extract_info, [url[0] for url in urls[:10]])  #on execute le code seulement  sur les 200 premières entreprises pour cet échantillon de test
+    results = executor.map(extract_info, [url for url in urls[:2]])  #on execute le code seulement  sur les 200 premières entreprises pour cet échantillon de test
 for result in results:
     if result is not None:
         data.append(result)
 
-# nettotyer les données
 df = pd.DataFrame(data)
 df.replace('\xa0', ' ', regex=True, inplace=True)
 df.replace('·  ·', '/', regex=True, inplace=True)
 # Enregistrer les données dans un fichier excel
-df.to_excel('/Users/othmaneirhboula/WebScrap/Airbnb_Final/ScrapingAirbnbbis.xlsx', index=False)
+df.to_excel('/Users/othmaneirhboula/WebScrap/Airbnb_Final/test45.xlsx', index=False)
 
 # Décommenter la ligne suivante pour tester une seule URL
 # print(extract_info("https://fr.airbnb.com/rooms/518105886245259262?adults=1&children=0&enable_m3_private_room=true&infants=0&pets=0&search_mode=regular_search&check_in=2024-10-15&check_out=2024-10-17&source_impression_id=p3_1721207008_P3y0GhNGFEL0EsJ1&previous_page_section_name=1000&federated_search_id=753d56dd-e651-461b-aa69-55db28791cf8&_set_bev_on_new_domain=1721132874_EANjNmZmExZDM1OG"))

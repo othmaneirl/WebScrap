@@ -2,6 +2,13 @@
 import requests
 from bs4 import BeautifulSoup
 import csv
+import json
+
+with open('config.json', 'r') as config_file:
+    config = json.load(config_file)
+
+output1Avito = config['Output1Avito']
+
 
 def extract_links_and_articles(url):
     session = requests.Session()
@@ -30,7 +37,7 @@ for i in range(1, 10): # Nombre de pages à parcourir
     for link, num_articles in links_and_articles:
         liens.append((link, num_articles))
 
-with open('/Users/othmaneirhboula/WebScrap/Avito/Liens/LiensBoutiquesArticles.csv', mode='w', newline='') as file:
+with open(output1Avito, mode='w', newline='') as file:
     writer = csv.writer(file)
     writer.writerow(['URL', 'Nombre d\'articles'])
     for line in liens:

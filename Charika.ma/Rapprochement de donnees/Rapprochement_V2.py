@@ -95,10 +95,9 @@ city_mappings = {
 }
 
 
-df2['Tribunal'] = df2['Tribunal'].apply(lambda x: city_mappings.get(x, x))
-
-df1['Tribunal_RC'] = df1['Tribunal'] + '_' + df1['RC']
-df2['Tribunal_RC'] = df2['Tribunal'] + '_' + df2['RC']
+df2['Tribunal'] = df2['Tribunal'].apply(lambda x: city_mappings.get(x, x)) # Remplacer les noms Scrapés par les noms DGI
+df1['Tribunal_RC'] = df1['Tribunal'] + '_' + df1['RC']     #df1 étant la base scrapée
+df2['Tribunal_RC'] = df2['Tribunal'] + '_' + df2['RC']     #df2 étant la base DGI
 
 common_tribunal_rcs = set(df1['Tribunal_RC']).intersection(set(df2['Tribunal_RC']))
 df1_filtered = df1[df1['Tribunal_RC'].isin(common_tribunal_rcs)]

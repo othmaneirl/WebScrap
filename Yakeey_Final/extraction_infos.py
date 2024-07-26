@@ -39,21 +39,18 @@ def extract_info(url):  #fonction qui extrait les informations d'une entreprise 
                 return element.text.strip() if element else "N/A"
             except Exception:
                 return "N/A"
-
         # Utilisation d'une fonction pour réduire la répétition du code pour extraire le texte avec XPath
         def extract_xpath_text(path):
             try:
                 return dom.xpath(path)[0].text.strip()
             except Exception:
                 return "N/A"
-
         def extract_CSS_text(css_selector):
             try:
                 element = soup.select_one(css_selector)
                 return element.text.strip() if element else "N/A"
             except Exception:
                 return "N/A"
-
         Article = extract_CSS_text(
             'body > div.mui-1xs344a > div > div > div > div > div > div > div.MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-24.MuiGrid-grid-lg-17.mui-6k8xca > div.MuiBox-root.mui-5vb4lz > div > h1')
         type_annonce = url.split('/')[4].split('-')[

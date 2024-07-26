@@ -85,17 +85,17 @@ def extract_info(url):
 urls_total = []
 
 # Utilisation de ThreadPoolExecutor pour le multithreading
-# data = []
-# with ThreadPoolExecutor(max_workers=4) as executor:    #il y aura au plus 4 executions en parallèle
-#     results = executor.map(extract_info, [url[0] for url in urls[:100]])  #on execute le code seulement sur les 200 premières entreprises pour cet échantillon de test
-# for result in results:
-#     if result is not None:
-#         data.append(result)
-#
-#
-# df = pd.DataFrame(data)
-# df.replace('\xa0', ' ', regex=True, inplace=True)
-# df.replace('\n', '', regex=True, inplace=True)
-# df.replace('\t', '', regex=True, inplace=True)
-# df.to_excel('/Users/othmaneirhboula/WebScrap/Mubawab/ScrapingMubawab_Final.xlsx', index=False)
-print(extract_info('https://www.mubawab.ma/fr/a/7955743/location-villa-%C3%A0-palmeraie'))
+data = []
+with ThreadPoolExecutor(max_workers=4) as executor:    #il y aura au plus 4 executions en parallèle
+    results = executor.map(extract_info, [url[0] for url in urls[:100]])  #on execute le code seulement sur les 200 premières entreprises pour cet échantillon de test
+for result in results:
+    if result is not None:
+        data.append(result)
+
+
+df = pd.DataFrame(data)
+df.replace('\xa0', ' ', regex=True, inplace=True)
+df.replace('\n', '', regex=True, inplace=True)
+df.replace('\t', '', regex=True, inplace=True)
+df.to_excel('/Users/othmaneirhboula/WebScrap/Mubawab/ScrapingMubawab_Final.xlsx', index=False)
+# print(extract_info('https://www.mubawab.ma/fr/a/7955743/location-villa-%C3%A0-palmeraie'))
